@@ -4,7 +4,28 @@
     <title>Numero</title>
  </head>
 <body>
-            <h1>Welcome to Numero Lucky</h1>
-            <h3>Let's get started.</h3>
+            <h1>Welcome to Iris Classifier</h1>
+            <h2>Let's get started.</h2>
+        <form action = "{{ url_for('irisclassify') }}" method="POST">
+            <table>
+                <tr>
+                    <th><h3>Sepal length</h3> </th>
+                    <td> <input type="text" name="sepallength" > </td>
+                </tr>
+                <tr> <td><h3>Sepal width </h3></td>
+                    <td><input type="text" name="sepalwidth" > </td>
+                </tr>
+                <tr>
+                    <td><h3>Petal length</h3></td>
+                    <td><input type="text" name="petallength" > </td>
+                </tr>
+                <tr>
+                    <td><h3>Petal width</h3></td>
+                    <td><input type="text" name="petalwidth" > </td>
+                </tr>
+            </table>
+            <p><input type="submit" value="Classify"></p>
+            
+        </form>
 </body>
 </html>

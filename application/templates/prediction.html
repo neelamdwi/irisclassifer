@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Numero</title>
+ </head>
+<body>
+    <div align = "center">
+        <h2>Class is {{ result }}</h2>
+            
+                {% if result  == 0 %}
+                    <h2>Name is setosa</h2>
+                    <img src="static/images/Iris_setosa.jpg">           
+                {% elif result == 1 %}
+                    <h2>Name is versicolor</h2>
+                    <img src="static/images/Iris_versicolor.jpg">                
+                {% else %}
+                    <h2>Name is verginica</h2>
+                    <img src="static/images/Iris_virginica.jpg">
+                {% endif %}
+    </div>      
+</body>
+</html>
