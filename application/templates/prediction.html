@@ -5,6 +5,22 @@
  </head>
 <body>
     <div align = "center">
+        <table border="1" style="border-collapse:collapse;"> 
+            <tr>
+                <th>Sepal length</th>
+                <th>Sepal width</th>
+                <th>Petal length</th>
+                <th>Petal width</th>
+            </tr>
+            <tr> 
+                <td> {{ data[0][0]}} </td>
+                <td> {{ data[0][1]}} </td>
+                <td> {{ data[0][2]}} </td>
+                <td> {{ data[0][3]}} </td>
+        </tr>
+    </table>
+       
+
         <h2>Class is {{ result }}</h2>
             
                 {% if result  == 0 %}

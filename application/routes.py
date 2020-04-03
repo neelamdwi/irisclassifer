@@ -17,8 +17,7 @@ def index():
 
 @app.route("/irisclassify", methods=['GET', 'POST'])
 def irisclassify():
-    username = request.form.get('username')
-    
+ 
     sepallength = request.form.get("sepallength")
     sepalwidth = request.form.get("sepalwidth")
     petallength = request.form.get("petallength")
@@ -38,4 +37,4 @@ def irisclassify():
 #    return classification_report(y_test, rfc.predict(X_test))
     
     result = rfc.predict(data)
-    return render_template("prediction.html", result=result)
+    return render_template("prediction.html", result=result, data=data)
