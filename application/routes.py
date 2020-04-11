@@ -1,14 +1,10 @@
 from application import app
-from flask import render_template, request, json, Response
+from flask import render_template, request, json, jsonify, Response
 import numpy as np
-from sklearn import datasets
-from sklearn.datasets import load_iris 
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
-
 from flask import render_template
-
+import pickle
+import requests
+import sys
 
 @app.route("/")
 @app.route("/index")
@@ -17,24 +13,20 @@ def index():
 
 @app.route("/irisclassify", methods=['GET', 'POST'])
 def irisclassify():
- 
+   
     sepallength = request.form.get("sepallength")
     sepalwidth = request.form.get("sepalwidth")
     petallength = request.form.get("petallength")
     petalwidth = request.form.get("petalwidth")
 
-    data = [[sepallength, sepalwidth, petallength, petalwidth]]
+    url = "http://localhost:8082/api"
 
-    iris = datasets.load_iris()
-    X = iris.data
-    y = iris.target
-
-    X_train, X_test, y_train, y_test = train_test_split(X, y)
-
-    rfc = RandomForestClassifier(n_estimators = 100, n_jobs = 2)
-    rfc.fit(X_train, y_train)
-#   print 'Accuracy = %0.2f' % accuracy_score(y_test, rfc.predict(X_test)) 
-#    return classification_report(y_test, rfc.predict(X_test))
+    data = json.dumps({"sepallength": sepallength, "sepalwidth": sepalwidth, "petallength": petallength, "petalwidth": petalwidth})
+    results =  requests.post(url,data)
     
-    result = rfc.predict(data)
-    return render_template("prediction.html", result=result, data=data)
+    print(data, file=sys.stdout)
+    print(results.content.decode('UTF-8'), file=sys.stdout)
+
+    return render_template("index.html", sepallength = sepallength, sepalwidth = sepalwidth, petallength = petallength, petalwidth = petalwidth, results=results.content.decode('UTF-8'))
+    #return render_template("prediction.html", form_data=data, results=results.content.decode('UTF-8'))
+
