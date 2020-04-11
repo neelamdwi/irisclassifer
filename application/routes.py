@@ -19,7 +19,8 @@ def irisclassify():
     petallength = request.form.get("petallength")
     petalwidth = request.form.get("petalwidth")
 
-    url = "http://localhost:8082/api"
+    #url = "http://localhost:8082/api"
+    url = "https://irisservice.herokuapp.com/api"
 
     data = json.dumps({"sepallength": sepallength, "sepalwidth": sepalwidth, "petallength": petallength, "petalwidth": petalwidth})
     results =  requests.post(url,data)
